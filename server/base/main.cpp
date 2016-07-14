@@ -16,20 +16,22 @@ world* g_pTheWorld = new CWorldBase;
 
 int main(int argc, char* argv[])
 {
+    //run.sh 关于baseapp启动命令为./baseapp ./cfg.ini 12 ./log/baselog_6 
+    //可以看出启动的参数为4
     if(argc < 4)
     {
         printf("Usage:%s etc_fn server_id log_fn\n", argv[0]);
         return -1;
     }
 
-    //first args[1] is configure file name
+    //first args[1] is configure file name 指代./cfg.ini
     const char* pszEtcFn = argv[1];
-    //second args[2] is server id for self
+    //second args[2] is server id for self  表示baseapp的代号
     uint16_t nServerId = (uint16_t)atoi(argv[2]);
-    //third args[3] is log file path
+    //third args[3] is log file path 日志文件
     const char* pszLogPath = argv[3];
 
-    signal(SIGPIPE, SIG_IGN);
+    signal(SIGPIPE, SIG_IGN);//
 	CDebug::Init();
 
     g_logger.SetLogPath(pszLogPath);
